@@ -15,8 +15,11 @@ include ./rules.mk
 INC_FOLDERS += \
     . \
 
-SRC_FILES += \
-	keymap_plain.c \
+ifdef KEYMAP
+	SRC_FILES := keymap_$(KEYMAP).c
+else
+	SRC_FILES := keymap_plain.c
+endif
 
 all: default ch554
 

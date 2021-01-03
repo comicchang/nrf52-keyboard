@@ -86,3 +86,5 @@ EventRecorderStub.scvd
 
 .DS_Store
 Thumbs.db
+keymap_passwords.h
+.history
