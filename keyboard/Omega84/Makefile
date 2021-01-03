@@ -16,9 +16,9 @@ INC_FOLDERS += \
     . \
 
 ifdef KEYMAP
-	SRC_FILES := keymap_$(KEYMAP).c
+    SRC_FILES := keymap_$(KEYMAP).c
 else
-	SRC_FILES := keymap_plain.c
+    SRC_FILES := keymap_plain.c
 endif
 
 all: default ch554

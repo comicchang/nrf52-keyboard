@@ -234,6 +234,7 @@ static void get_all_macro(uint16_t offset)
  * @param data 数据指针
  * @param len 数据长度
  */
+#if defined(KEYMAP_STORAGE) || defined(MACRO_STORAGE)
 static void set_storage(enum storage_type type, uint16_t offset, uint8_t* data, uint16_t len)
 {
     if (storage_write_data(type, offset, len, data) < len)
@@ -241,6 +242,7 @@ static void set_storage(enum storage_type type, uint16_t offset, uint8_t* data, 
     else
         hid_response_generic(HID_RESP_SUCCESS);
 }
+#endif
 
 /**
  * @brief 设置单个键的键值

@@ -520,8 +520,10 @@ uint16_t storage_write_data(enum storage_type type, uint16_t offset, uint16_t le
 
     memcpy(&pointer[offset], data, len);
 
+#ifdef KEYMAP_STORAGE
     if (type == STORAGE_KEYMAP)
         check_keymap();
+#endif
 
     return len;
 }
