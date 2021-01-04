@@ -49,6 +49,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         }                                                  \
     };
 
+static bool volatile s_fds_initialized;
 #ifdef KEYMAP_STORAGE
 #define KEYMAP_SIZE_WORD GET_WORD(KEYMAP_LAYER_SIZE* MAX_LAYER)
 #define KEYMAP_RECORD_KEY 0x0514
@@ -56,7 +57,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 REGISTER_FDS_BLOCK(keymap, KEYMAP_SIZE_WORD, KEYMAP_RECORD_KEY)
 
 static bool keymap_valid = true;
-static bool volatile s_fds_initialized;
 static void check_keymap()
 {
     bool flag = false;
