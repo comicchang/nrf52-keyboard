@@ -25,7 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 enum keymap_layout {
     BASE = 0,
-    MAC,
+    WIN,
     SPACEFN,
     MOUSE,
     PASSWD,
@@ -52,9 +52,9 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |---------------------------------------------------------------|
      * |FN5   |  A|  S|  D|  F|  G|  H|  J|  K|  L|  ;|  '|Return  |PgD|
      * |---------------------------------------------------------------|
-     * |Shift   |  Z|  X|  C|  V|  B|  N|  M|  ,|  .|  /|Shift | ↑ |FN1|
+     * |Shift   |  Z|  X|  C|  V|  B|  N|  M|  ,|  .|  /|Shift | ↑ |End|
      * |---------------------------------------------------------------|
-     * |Ctrl|Gui |Alt |      SpaceFN           |Alt|Gui|Ctl| ← | ↓ | → |
+     * |Ctrl|Alt |Cmd |      SpaceFN           |Alt|App|Fn1| ← | ↓ | → |
      * `---------------------------------------------------------------'
      */
     [BASE] = KEYMAP(
@@ -62,8 +62,8 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         GRV,  1,    2,    3,   4,    5,   6,    7,    8,    9,    0,    MINS, EQL,  BSPC,       HOME,
         TAB,  Q,    W,    E,   R,    T,   Y,    U,    I,    O,    P,    LBRC, RBRC, BSLS,       PGUP,
         FN5,  A,    S,    D,   F,    G,   H,    J,    K,    L,    SCLN, QUOT,       ENT,        PGDN,
-        LSFT, Z,    X,    C,   V,    B,   N,    M,    COMM, DOT,  SLSH, RSFT,             UP,   FN1,
-        LCTL, LGUI, LALT,                 FN0,              RALT, RGUI, RCTL,       LEFT, DOWN, RGHT),
+        LSFT, Z,    X,    C,   V,    B,   N,    M,    COMM, DOT,  SLSH, RSFT,             UP,   END,
+        LCTL, LALT, LGUI,                 FN0,              RGUI, APP,  FN1,        LEFT, DOWN, RGHT),
 
 
     /* Keymap 2: Mac Layout
@@ -81,13 +81,13 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |    |LALT|LGUI|                        |   |   |   |   |   |   |
      * `---------------------------------------------------------------'
      */
-    [MAC] = KEYMAP(
+    [WIN] = KEYMAP(
         ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____,
         ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____,       ____,
         ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____,       ____,
         CAPS, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____,             ____,
         ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____,             ____, ____,
-        ____, LALT, LGUI,                   ____,             RGUI, RALT, ____,       ____, ____, ____),
+        ____, LGUI, LALT,                   ____,             RALT, ____, ____,       ____, ____, ____),
 
     /* Keymap 3: SpaceFN
      * ,---------------------------------------------------------------.
@@ -109,7 +109,7 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ____,   F1,   F2,   F3,   F4,   F5,   F6,   F7,   F8,   F9,  F10,  F11,  F12,  DEL,       ____,
         ____, ____, PGUP, ____, ____, ____, ____, ____, ____, PSCR, SLCK, PAUS,  INS,  DEL,       ____,
         ____, HOME, PGDN,  END, ____, ____, LEFT, DOWN,   UP, RGHT, ____, ____, PENT,             ____,
-        ____, ____, ____, ____, ____,  SPC,  GRV,  FN2, ____, ____, ____, ____,             ____,  END,
+        ____, ____, ____, ____, ____,  SPC,  GRV,  FN2, ____, ____, ____, ____,             ____, ____,
         ____, ____, ____,                   ____,             ____, ____, ____,       ____, ____, ____),
 
     /* Keymap 4: MouseKey
@@ -137,11 +137,11 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     /* Keymap 5: PASSWORD
      * ,---------------------------------------------------------------.
-     * |   |SPC|MAC|   |RST|   |   |   |   |   |   |   |   |   |   |   |
+     * |   |SPC|WIN|   |RST|   |   |   |   |   |   |   |   |   |   |   |
      * |---------------------------------------------------------------|
      * |EXT|CLR|PW1|PW2|PW3|   |   |   |   |   |   |   |   |       |   |
      * |---------------------------------------------------------------|
-     * |     |   |SPC|MAC|   |RST|   |   |   |   |   |   |   |     |   |
+     * |     |   |SPC|WIN|   |RST|   |   |   |   |   |   |   |     |   |
      * |---------------------------------------------------------------|
      * |      |   |   |   |   |   |   |   |   |   |   |   |        |   |
      * |---------------------------------------------------------------|
@@ -150,21 +150,13 @@ const uint8_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |    |    |    |                        |   |   |   |   |   |   |
      * `---------------------------------------------------------------'
      */
-    KEYMAP(
+    [PASSWD] = KEYMAP(
         FN21, FN30, FN31, FN21, FN29, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21,
         FN21, FN22, FN23, FN24, FN25, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21,       FN21,
         FN21, FN30, FN31, FN21, FN29, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21,       FN21,
         FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, ____, FN21,             FN21,
-        FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21,             FN21, ____,
-        FN21, FN21, FN21,                   FN21,             FN21, FN21, FN21,       FN21, FN21, FN21),
-
-    KEYMAP(
-        ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____,
-        ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____,       ____,
-        ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____,       ____,
-        ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____,             ____,
-        ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____,             ____, ____,
-        ____, ____, ____,                   ____,             ____, ____, ____,       ____, ____, ____),
+        FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21, FN21,             FN21, FN21,
+        FN21, FN21, FN21,                   FN21,             FN21, FN21, ____,       FN21, FN21, FN21),
 
     KEYMAP(
         ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____,
@@ -180,7 +172,7 @@ enum function_id {
     TRICKY_ESC,
     DOUBLE_CTRL,
     SET_DEFAULT_LAYER_SPACEFN,
-    SET_DEFAULT_LAYER_MAC,
+    SET_DEFAULT_LAYER_WIN,
     JUMP_BOOTLOADER,
 };
 enum macro_id {
@@ -221,7 +213,7 @@ const action_t fn_actions[] = {
     // FN + ' + r = reboot to bootloader
     [29] = ACTION_FUNCTION        ( JUMP_BOOTLOADER),
     [30] = ACTION_FUNCTION        ( SET_DEFAULT_LAYER_SPACEFN),
-    [31] = ACTION_FUNCTION        ( SET_DEFAULT_LAYER_MAC),
+    [31] = ACTION_FUNCTION        ( SET_DEFAULT_LAYER_WIN),
 
 };
 
@@ -247,9 +239,9 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   static uint8_t tricky_esc_registered;
   switch (id) {
-    case SET_DEFAULT_LAYER_MAC:
+    case SET_DEFAULT_LAYER_WIN:
       if (!record->event.pressed) {
-        default_layer_xor((1UL<<MAC));
+        default_layer_xor((1UL<<WIN));
         //eeconfig_write_default_layer((uint8_t)(default_layer_state));
       }
       break;
